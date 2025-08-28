@@ -37,11 +37,28 @@ function formatDate(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let formattedDay = days[day];
   return `${formattedDay} ${hours}:${minutes}`;
+}
+
+// Function to update the body background based on the time
+function updateBackgroundByTime() {
+  let now = new Date();
+  let hour = now.getHours();
+  let body = document.body;
+
+  if (hour >= 6 && hour < 18) {
+    // Daytime
+    body.style.backgroundImage = 'url("day-bg.jpg")';
+    body.style.backgroundSize = "cover";
+  } else {
+    // Nighttime
+    body.style.backgroundImage = 'url("night-bg.jpg")';
+    body.style.backgroundSize = "cover";
+  }
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -51,3 +68,6 @@ let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
+
+// Call the new function to set the initial background
+updateBackgroundByTime();
